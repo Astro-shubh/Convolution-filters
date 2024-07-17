@@ -24,7 +24,7 @@ plt.plot(q,ampl,label='Filter amplitude (width 30 bins)')
 
 plt.legend()
 plt.savefig('Filter_30_amp.png')
-
+plt.clf()
 plt.plot(q,phase,label='Filter phase (width 30 bins)')
 plt.legend()
 plt.savefig('Filter_30_phase.png')

@@ -35,7 +35,7 @@ int main(){
 
 //   Start generating the filters for earch width in the filter_widthsi
 	cout << numfilters << endl;
-	for(i=0; i<numfilters; i++){
+	for(i=1; i<numfilters; i++){
 		width=filter_widths[i];
 		cout << "computing template for width "+to_string(width) << endl;
 //  generate template for the width
