@@ -3,8 +3,8 @@
 using namespace std;
 template_generator::template_generator(double drift1){drift=drift1;}
 void template_generator::width_array(){for(j=-1*drift ;j < drift+1 ; j++){q.push_back(j);}}
-void template_generator::left_edge_array(){for(j=-1*drift;j<drift; j++){Z.push_back(sqrt(2.0/drift)*(j+drift/2.0));}}
-void template_generator::right_edge_array(){for(j=-1*drift;j<drift; j++){Y.push_back(sqrt(2.0/drift)*(j-drift/2.0));}}
+void template_generator::left_edge_array(){for(j=-1*drift;j<drift+1; j++){Z.push_back(sqrt(2.0/drift)*(j+drift/2.0));}}
+void template_generator::right_edge_array(){for(j=-1*drift;j<drift+1; j++){Y.push_back(sqrt(2.0/drift)*(j-drift/2.0));}}
 void template_generator::compute_SC(){
 	Fresnel_for_vector Fresnel(Y);
 	Fresnel.compute_fresnel();

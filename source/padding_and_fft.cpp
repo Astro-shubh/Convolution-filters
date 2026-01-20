@@ -2,9 +2,10 @@
 
 using namespace std;
 
-padding_and_fft::padding_and_fft(vector<double> temp_real, vector<double> temp_imag){
+padding_and_fft::padding_and_fft(vector<double> temp_real, vector<double> temp_imag, int len_filter){
 	in_real=temp_real;
 	in_imag=temp_imag;
+	fil_len = len_filter;
 }
 
 void padding_and_fft::do_padding(){

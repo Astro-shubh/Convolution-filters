@@ -9,7 +9,7 @@
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
 	int i,j,k, numfilters=43;
 	double width,d2;
 	vector<double> filter_widths, temp_real, temp_imag;
@@ -17,21 +17,30 @@ int main(){
                 float real;
                 float imag;
                 };
+	if(argc < 3)
+	{
+		std::cout << "./executable <output file name> <filter seperation>" << std::endl;
+		exit(0);
+	}
 
-
+	std::string outfilename = std::string(argv[1]);
+	int fil_sep = std::stoi(argv[2]);
 //   Define the filter widths
 	for(i=0; i<numfilters; i++){
 		if(i==0){
 			filter_widths.push_back(1.0);
 		}
 		else{
-			filter_widths.push_back(i*5.0);
+			filter_widths.push_back(i*fil_sep);
 		}
 	}
 
+	int fil_len = 2*fil_sep*(numfilters-1)+1;
+	std::cout << "Size of the widest filter: " << fil_len << std::endl;
+
 //   Filestreams to store the generated filters
-	ofstream wf("padding_fft_results.dat", ios::out | ios::binary);
-	ofstream outfile("padding_fft_results.txt");
+	ofstream wf(outfilename, ios::out | ios::binary);
+//	ofstream outfile("padding_fft_results.txt");
 
 //   Start generating the filters for earch width in the filter_widthsi
 	cout << numfilters << endl;
@@ -47,7 +56,7 @@ int main(){
 		temp_imag=template1.final_tempi;
 		template1.final_tempr.clear();
 		template1.final_tempi.clear();
-		padding_and_fft filter_final(temp_real, temp_imag);
+		padding_and_fft filter_final(temp_real, temp_imag, fil_len);
 // Padding of the template
 		filter_final.do_padding();
 // FFT of the padded template
